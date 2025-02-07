@@ -24,4 +24,21 @@ public class Node {
     public void setNext(Node next) {
         this.next = next;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Node other = (Node) obj;
+        if (value == null) {
+            return other.value == null;
+        } else {
+            return value.equals(other.value);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return value == null ? 0 : value.hashCode();
+    }
 }
