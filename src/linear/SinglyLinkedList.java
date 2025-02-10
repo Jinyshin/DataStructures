@@ -24,27 +24,30 @@ public class SinglyLinkedList {
     }
 
     public void remove(Object value) {
-        Node target = new Node(value);
-        if (head == null) {
-            throw new NoSuchElementException("찾는 원소가 없습니다.");
-        }
-        if (head.equals(target)) {
-            head = head.getNext();
-            return;
-        }
-        Node current = head;
-        Node nextNode = current.getNext();
-        while (nextNode != null) {
-            if (nextNode.equals(target)) {
-                Node nextOfNextNode = nextNode.getNext();
-                current.setNext(nextOfNextNode);
-                nextNode.setNext(null);
-                return;
+        Node prevNode = null;
+        Node currNode = head;
+
+        while (currNode != null) {
+            Object currValue = currNode.getValue();
+            if (currValue == null && value == null) {
+                break;
+            } else if (currValue.equals(value)) {
+                break;
             }
-            current = nextNode;
-            nextNode = current.getNext();
+
+            prevNode = currNode;
+            currNode = currNode.getNext();
         }
-        throw new NoSuchElementException("찾는 원소가 없습니다.");
+
+        if (currNode == null) {
+            throw new NoSuchElementException(" not found: " + (value == null ? "null" : value.toString()));
+        }
+
+        if (prevNode == null) {
+            head = currNode.getNext();
+        } else {
+            prevNode.setNext(currNode.getNext());
+        }
     }
 
     public boolean contains(Object value) {
