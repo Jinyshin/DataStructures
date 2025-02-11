@@ -1,14 +1,17 @@
 package linear;
 
+import org.jetbrains.annotations.Nullable;
+
 public class Node {
     private Object value;
     private Node next;
 
-    public Node(Object value) {
+    public Node(@Nullable Object value) {
         this.value = value;
         this.next = null;
     }
 
+    @Nullable
     public Object getValue() {
         return value;
     }
