@@ -35,7 +35,7 @@ public class HashSet {
         if (buckets[hash].contains(value)) {
             buckets[hash].remove(value);
         } else {
-            throw new NoSuchElementException("찾는 원소가 없습니다.");
+            throw new NoSuchElementException(" not found: " + (value == null ? "null" : value.toString()));
         }
     }
 
