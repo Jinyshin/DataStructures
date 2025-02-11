@@ -1,6 +1,7 @@
 package linear;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SinglyLinkedList {
 
@@ -29,9 +30,7 @@ public class SinglyLinkedList {
 
         while (currNode != null) {
             Object currValue = currNode.getValue();
-            if (currValue == null && value == null) {
-                break;
-            } else if (currValue.equals(value)) {
+            if (Objects.equals(currValue, value)) {
                 break;
             }
 
@@ -51,10 +50,10 @@ public class SinglyLinkedList {
     }
 
     public boolean contains(Object value) {
-        Node target = new Node(value);
         Node current = head;
         while(current != null) {
-            if (current.equals(target)) {
+            Object currValue = current.getValue();
+            if (Objects.equals(currValue, value)) {
                 return true;
             }
             current = current.getNext();
